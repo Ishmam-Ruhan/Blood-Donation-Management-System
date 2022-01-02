@@ -31,5 +31,12 @@ To run this project, We have to follow 3(Three) steps:
           Goto:
           src -> Database -> ConnectionDatabase.java
         
+ -> One more thing:
+ 
+      If you want to use this project as an 'Admin', you'll need admin approval key.
+      By Default Admin Approval Key: 13579
+      You can change it after logging as Admin in settings. 
         
-                       ******** Enjoy ********
+                      
+                      
+                                                ******** Enjoy ********
