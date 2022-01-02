@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Ict_Curnival">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/Ict_Curnival.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

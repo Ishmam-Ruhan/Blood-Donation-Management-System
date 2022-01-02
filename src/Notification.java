@@ -26,7 +26,12 @@ public class Notification extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+    DatabaseConnection db;
+    Statement st;
+
     public Notification() {
+        db=new DatabaseConnection();
+        st=db.getDbStatement();
         initComponents();
         this.setLocationRelativeTo(null);
         usericon();
@@ -41,11 +46,6 @@ public class Notification extends javax.swing.JFrame {
     public void usericon(){
         String s="";
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
                     ResultSet rs=st.executeQuery("select *from userselection");
            
                     
@@ -408,11 +408,6 @@ public class Notification extends javax.swing.JFrame {
 
     private void executeSQLQuery(String query) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
           
            if(st.executeUpdate(query)==1){
                
@@ -469,11 +464,6 @@ public class Notification extends javax.swing.JFrame {
         
         //code suru
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
                     ResultSet rs=st.executeQuery("select *from settings");
            
                     
@@ -509,11 +499,8 @@ public class Notification extends javax.swing.JFrame {
 
      public void refresh2(){
         try{
-           String url="jdbc:mysql://localhost/"+current;
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+            CustomDatabaseConnection cdb=new CustomDatabaseConnection(current);
+            Statement st= cdb.getDbStatement();
            ResultSet rs=st.executeQuery("select *from notification");
            
            DefaultTableModel model=(DefaultTableModel) table.getModel();
@@ -557,11 +544,6 @@ public class Notification extends javax.swing.JFrame {
         String time=model.getValueAt(i, 2).toString();
         String name="";
         try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="1234";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
            ResultSet rs=st.executeQuery("select *from userprofile");
            
            while(rs.next()){
@@ -597,11 +579,8 @@ public class Notification extends javax.swing.JFrame {
 
     private void esp(String query) {
        try{
-           String url="jdbc:mysql://localhost/"+current;
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+           CustomDatabaseConnection cdb=new CustomDatabaseConnection(current);
+           Statement st= cdb.getDbStatement();
           
            if(st.executeUpdate(query)==1){
                
@@ -625,11 +604,8 @@ public class Notification extends javax.swing.JFrame {
     
     public void refresh3(){
         try{
-           String url="jdbc:mysql://localhost/"+current;
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+            CustomDatabaseConnection cdb=new CustomDatabaseConnection(current);
+            Statement st= cdb.getDbStatement();
            ResultSet rs=st.executeQuery("select *from notification");
            
            DefaultTableModel model=(DefaultTableModel) table.getModel();
@@ -659,11 +635,7 @@ public class Notification extends javax.swing.JFrame {
     
     private void executeSQLQuery(String query,String message) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
           
            if(st.executeUpdate(query)==1){
                JOptionPane.showConfirmDialog(null,"Your Profile "+message+"Successfully",""+message,JOptionPane.INFORMATION_MESSAGE);

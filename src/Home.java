@@ -22,7 +22,11 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+    DatabaseConnection db;
+    Statement st;
     public Home() {
+        db=new DatabaseConnection();
+        st=db.getDbStatement();
         initComponents();
         this.setLocationRelativeTo(null);
         usericon();
@@ -35,11 +39,7 @@ public class Home extends javax.swing.JFrame {
     public void usericon(){
         String s="";
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+
                     ResultSet rs=st.executeQuery("select *from userselection");
            
                     
@@ -465,11 +465,7 @@ public class Home extends javax.swing.JFrame {
         
         //code suru
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+
                     ResultSet rs=st.executeQuery("select *from settings");
            
                     
@@ -507,11 +503,7 @@ public class Home extends javax.swing.JFrame {
         
         //code suru
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+
                     ResultSet rs=st.executeQuery("select *from settings");
            
                     
@@ -550,11 +542,7 @@ public class Home extends javax.swing.JFrame {
         
         //code suru
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+
                     ResultSet rs=st.executeQuery("select *from settings");
            
                     
@@ -594,11 +582,7 @@ public class Home extends javax.swing.JFrame {
     
     private void executeSQLQuery(String query) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
           
            if(st.executeUpdate(query)==1){
                //JOptionPane.showMessageDialog(null,"Registration Successful!!","Congrats..",JOptionPane.INFORMATION_MESSAGE);

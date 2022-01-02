@@ -28,7 +28,10 @@ public class Profile extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+    DatabaseConnection db;
+
     public Profile() {
+        db=new DatabaseConnection();
         initComponents();
         this.setLocationRelativeTo(null);
         usericon();
@@ -36,6 +39,7 @@ public class Profile extends javax.swing.JFrame {
         request();
         notification();
         //blocking();
+
     }
     
     public static String song="E:\\Projects\\Java Projects\\Ict_Curnival\\dist\\filling-your-inbox.mp3";
@@ -46,11 +50,8 @@ public class Profile extends javax.swing.JFrame {
     public void usericon(){
         String s="";
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+
+                    Statement st= db.getDbStatement();
                     ResultSet rs=st.executeQuery("select *from userselection");
            
                     
@@ -65,6 +66,7 @@ public class Profile extends javax.swing.JFrame {
             
                  }
         icon.setText("  Hello, "+s+"!");
+        System.out.println("S= "+s);
     }
     
     
@@ -72,11 +74,9 @@ public class Profile extends javax.swing.JFrame {
     
     public void notification(){
         try{
-           String url="jdbc:mysql://localhost/"+current;
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
+            CustomDatabaseConnection cdb=new CustomDatabaseConnection(current);
+            Statement st= cdb.getDbStatement();
            ResultSet rs=st.executeQuery("select *from notification");
            int count=0;
            while(rs.next()){
@@ -107,11 +107,7 @@ public class Profile extends javax.swing.JFrame {
     
     public void refresh(){
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+                    Statement st= db.getDbStatement();
                     ResultSet rs=st.executeQuery("select *from userprofile");
            
                     
@@ -155,11 +151,7 @@ public class Profile extends javax.swing.JFrame {
     
     public void request(){
         try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+            Statement st= db.getDbStatement();
            ResultSet rs=st.executeQuery("select *from requests");
            
            DefaultTableModel model=(DefaultTableModel) table1.getModel();
@@ -826,16 +818,14 @@ public class Profile extends javax.swing.JFrame {
 
     private void executeSQLQuery(String query) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
+           Statement st= db.getDbStatement();
           
            if(st.executeUpdate(query)==1){
-               
+               System.out.println("Executed");
            }else{
-               //JOptionPane.showMessageDialog(null,"There is a problem.","Sorry!",JOptionPane.WARNING_MESSAGE); 
+               //JOptionPane.showMessageDialog(null,"There is a problem.","Sorry!",JOptionPane.WARNING_MESSAGE);
+               System.out.println("Not");
            }
            
            
@@ -872,11 +862,8 @@ public class Profile extends javax.swing.JFrame {
         
         //code suru
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+
+                Statement st= db.getDbStatement();
                     ResultSet rs=st.executeQuery("select *from settings");
            
                     
@@ -910,11 +897,8 @@ public class Profile extends javax.swing.JFrame {
         
         //code suru
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+
+            Statement st= db.getDbStatement();
                     ResultSet rs=st.executeQuery("select *from settings");
            
                     
@@ -964,11 +948,8 @@ public class Profile extends javax.swing.JFrame {
         }
         
         try{
-            String url="jdbc:mysql://localhost/diu_blood_management_db";
-            String user="root";
-            String passs="";
-            Connection con=DriverManager.getConnection(url,user,passs);
-            Statement st=con.createStatement();
+
+            Statement st= db.getDbStatement();
             ResultSet rs=st.executeQuery("select *from block");
             
             
@@ -1008,11 +989,9 @@ public class Profile extends javax.swing.JFrame {
         
         //code suru
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+
+
+                    Statement st= db.getDbStatement();
                     ResultSet rs=st.executeQuery("select *from settings");
            
                     
@@ -1110,11 +1089,8 @@ public class Profile extends javax.swing.JFrame {
             
             
             try{
-                String url="jdbc:mysql://localhost/";
-                String user="root";
-                String pass="";
-                Connection con=DriverManager.getConnection(url,user,pass);
-                Statement st=con.createStatement();
+                CustomDatabaseConnection cdb=new CustomDatabaseConnection("");
+                Statement st= cdb.getDbStatement();
            
                 st.executeUpdate(db);
            
@@ -1186,11 +1162,8 @@ public class Profile extends javax.swing.JFrame {
         blocking();
         boolean check= false;
         try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
+           Statement st= db.getDbStatement();
            ResultSet rs=st.executeQuery("select *from donors");
            
            while(rs.next()){
@@ -1236,11 +1209,8 @@ public class Profile extends javax.swing.JFrame {
         blocking();
         boolean check= false;
         try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
+            Statement st= db.getDbStatement();
            ResultSet rs=st.executeQuery("select *from block");
            
            while(rs.next()){
@@ -1272,11 +1242,8 @@ public class Profile extends javax.swing.JFrame {
             
             boolean c=false;
             try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
+                Statement st= db.getDbStatement();
            ResultSet rs=st.executeQuery("select *from donors");
            
            while(rs.next()){
@@ -1297,9 +1264,10 @@ public class Profile extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"You name is already in the donor list!\nThanks!");
             }else{
                 String insert="INSERT INTO `donors`(`DonorId`, `Name`, `Age`, `Gender`, `Bg`, `Id`, `Address`, `Contact`, `Added by`) VALUES ('"+id+"','"+nametxt.getText()+"','"+agetxt.getText()+"','"+gender+"','"+bg+"','"+String.valueOf("")+"','"+addresstxt.getText()+"','"+contacttxt.getText()+"','"+current+"')";
-                executeSQLQuery(insert);
+                executeSQLQuery(insert,"Inserted Success");
                 String update="UPDATE `userprofile` SET `Eligible`='"+String.valueOf("Yes")+"' WHERE `Un`=\""+current+"\"";
                 executeSQLQuery(update);
+                System.out.println("hello");
                 JOptionPane.showMessageDialog(null,"Done!!!!!!");
             
                 refresh();
@@ -1327,24 +1295,24 @@ public class Profile extends javax.swing.JFrame {
     
     
     private void executeSQLQuery(String query,String message) {
-       try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
-          
-           if(st.executeUpdate(query)==1){
+        System.out.println("Tppppp");
+        try{
+
+           Statement st= db.getDbStatement();
+           int p=st.executeUpdate(query);
+           System.out.println("P = "+p);
+           if(p==1){
                //JOptionPane.showConfirmDialog(null,"Your Profile "+message+"Successfully",""+message,JOptionPane.INFORMATION_MESSAGE);
-               
+               System.out.println(message);
 //ys/no code hbe
            }else{
                //JOptionPane.showMessageDialog(null,"Data not inserted\n\nPlease check and retry.","Alert",JOptionPane.WARNING_MESSAGE); 
+               System.out.println("Something Wrong");
            }
            
            
        }catch(Exception e){
-            
+            System.out.println("Excep: "+e);
        }
     }
     

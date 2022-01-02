@@ -22,7 +22,13 @@ public class ShowInsertedData1 extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+    DatabaseConnection db;
+    Statement st;
+
     public ShowInsertedData1() {
+        db=new DatabaseConnection();
+        st=db.getDbStatement();
+
         initComponents();
         this.setLocationRelativeTo(null);
         call();
@@ -261,11 +267,7 @@ public class ShowInsertedData1 extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         try{
-            String url="jdbc:mysql://localhost/diu_blood_management_db";
-            String user="root";
-            String pass="1234";
-            Connection con=DriverManager.getConnection(url,user,pass);
-            Statement st=con.createStatement();
+
             //ResultSet rs=st.executeQuery("select *from donors");
 
         }catch(Exception e){
@@ -285,11 +287,7 @@ public class ShowInsertedData1 extends javax.swing.JFrame {
     
     private void executeSQLQuery(String query) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="1234";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
           
            if(st.executeUpdate(query)==1){
                //JOptionPane.showMessageDialog(null,"Registration Successful!!","Congrats..",JOptionPane.INFORMATION_MESSAGE);
@@ -312,11 +310,7 @@ public class ShowInsertedData1 extends javax.swing.JFrame {
     public void call(){
         
         try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="1234";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
            ResultSet rs=st.executeQuery("select *from donors");
            
            
@@ -347,11 +341,7 @@ public class ShowInsertedData1 extends javax.swing.JFrame {
         
         
         try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="1234";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
            ResultSet rs=st.executeQuery("select *from donors");
            
            

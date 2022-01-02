@@ -22,7 +22,13 @@ public class Admin extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
+
+    DatabaseConnection db;
+    Statement st;
+
     public Admin() {
+        db=new DatabaseConnection();
+        st=db.getDbStatement();
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -163,11 +169,6 @@ public class Admin extends javax.swing.JFrame {
         
         
         try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
            ResultSet rs=st.executeQuery("select *from admin");
            
            int count=0;
@@ -207,11 +208,6 @@ public class Admin extends javax.swing.JFrame {
     
     private void executeSQLQuery(String query) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
           
            if(st.executeUpdate(query)==1){
                //JOptionPane.showMessageDialog(null,"Registration Successful!!","Congrats..",JOptionPane.INFORMATION_MESSAGE);

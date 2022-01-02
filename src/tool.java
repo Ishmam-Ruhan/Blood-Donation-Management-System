@@ -23,7 +23,11 @@ public class tool extends javax.swing.JFrame {
     /**
      * Creates new form tool
      */
+    DatabaseConnection db;
+    Statement st;
     public tool() {
+        db=new DatabaseConnection();
+        st=db.getDbStatement();
         initComponents();
         this.setLocationRelativeTo(null);
         usericon();
@@ -34,11 +38,7 @@ public class tool extends javax.swing.JFrame {
     public void usericon(){
         String s="";
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="1234";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+
                     ResultSet rs=st.executeQuery("select *from userselection");
            
                     
@@ -173,11 +173,7 @@ public class tool extends javax.swing.JFrame {
             boolean b=false;
             
             try {
-                String url="jdbc:mysql://localhost/diu_blood_management_db";
-                String user="root";
-                String pass="1234";
-                Connection con=DriverManager.getConnection(url,user,pass);
-                Statement st=con.createStatement();
+
                  ResultSet rs=st.executeQuery("select *from block");
            
                 while(rs.next()){
@@ -211,11 +207,7 @@ public class tool extends javax.swing.JFrame {
 
     private void esp(String query) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="1234";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
           
            if(st.executeUpdate(query)==1){
                

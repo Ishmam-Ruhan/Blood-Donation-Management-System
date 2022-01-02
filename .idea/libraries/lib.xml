@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/lib/beansbinding-1.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/mysql-connector-java-8.0.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/AbsoluteLayout.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/Ict_Curnival.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

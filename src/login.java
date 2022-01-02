@@ -22,7 +22,10 @@ public class login extends javax.swing.JFrame {
     /**
      * Creates new form login
      */
+    DatabaseConnection db;
+
     public login() {
+        db=new DatabaseConnection();
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -269,14 +272,7 @@ public class login extends javax.swing.JFrame {
         String passs=passtxt.getText();
         
         try{                                                            //Database exception handelling
-            
-           //Class.forName("com.mysql.jdbc.Driver");
-           
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+            Statement st=db.getDbStatement();
            ResultSet rs=st.executeQuery("select *from user");           // Searching result
            
            int count=0;
@@ -348,11 +344,8 @@ public class login extends javax.swing.JFrame {
                         boolean check=false;
                         
                         try{                                                            //Database exception handelling
-                                String url="jdbc:mysql://localhost/diu_blood_management_db";
-                                String user="root";
-                                String tpass="";
-                                Connection con=DriverManager.getConnection(url,user,tpass);
-                                Statement st=con.createStatement();
+
+                                Statement st=db.getDbStatement();
                                 ResultSet rs=st.executeQuery("select *from user");           // Searching result
            
                                 int count=0;
@@ -399,11 +392,7 @@ public class login extends javax.swing.JFrame {
     
     private void executeSQLQuery2(String query) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+           Statement st=db.getDbStatement();
           
            if(st.executeUpdate(query)==1){          // For update
                
@@ -422,11 +411,8 @@ public class login extends javax.swing.JFrame {
     
     private void executeSQLQuery(String query) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
+           Statement st=db.getDbStatement();
           
            if(st.executeUpdate(query)==1){
                JOptionPane.showMessageDialog(null,"Registration Successful!!","Congrats..",JOptionPane.INFORMATION_MESSAGE);

@@ -22,10 +22,12 @@ public class CompleteProfile extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+    DatabaseConnection db;
+
     public CompleteProfile() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        db =new DatabaseConnection();
     }
 
     
@@ -299,11 +301,8 @@ public class CompleteProfile extends javax.swing.JFrame {
             //try catch for donor id previous
             int did=0;
                 try{
-                        String url="jdbc:mysql://localhost/diu_blood_management_db";
-                        String user="root";
-                        String pass="";
-                        Connection con=DriverManager.getConnection(url,user,pass);
-                        Statement st=con.createStatement();
+
+                        Statement st=db.getDbStatement();
                         ResultSet rs=st.executeQuery("select *from userprofile");
                         String s="";
                         while(rs.next()){
@@ -326,11 +325,8 @@ public class CompleteProfile extends javax.swing.JFrame {
             String person="";
             
             try{
-                        String url="jdbc:mysql://localhost/diu_blood_management_db";
-                        String user="root";
-                        String pass="";
-                        Connection con=DriverManager.getConnection(url,user,pass);
-                        Statement st=con.createStatement();
+
+                        Statement st=db.getDbStatement();
                         ResultSet rs=st.executeQuery("select *from userselection");
                         String s="";
                         while(rs.next()){
@@ -353,12 +349,9 @@ public class CompleteProfile extends javax.swing.JFrame {
             executeSQLQuery(insert,"Inserted");
             
                 try{
-                        String url="jdbc:mysql://localhost/diu_blood_management_db";
-                        String user="root";
-                        String pass="";
-                        Connection con=DriverManager.getConnection(url,user,pass);
+
                         String database="CREATE DATABASE "+username;
-                        Statement st=con.createStatement();
+                        Statement st=db.getDbStatement();
                         st.executeUpdate(database);
                         
            
@@ -367,12 +360,10 @@ public class CompleteProfile extends javax.swing.JFrame {
                  }
                 
                 try{
-                        String url="jdbc:mysql://localhost/"+username;
-                        String user="root";
-                        String pass="";
-                        Connection con=DriverManager.getConnection(url,user,pass);
+
                         String database="CREATE TABLE notification(ReceiveID VARCHAR(254) ,  Request VARCHAR(100), Time VARCHAR(30), View VARCHAR(5))";
-                        Statement st=con.createStatement();
+                        CustomDatabaseConnection cdb=new CustomDatabaseConnection(username);
+                        Statement st= cdb.getDbStatement();
                         st.executeUpdate(database);
                         
            
@@ -389,11 +380,8 @@ public class CompleteProfile extends javax.swing.JFrame {
     
     private void executeSQLQuery(String query,String message) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
+           Statement st= db.getDbStatement();
           
            if(st.executeUpdate(query)==1){
                JOptionPane.showMessageDialog(null,"Your Profile Created Successfully!!");
@@ -413,11 +401,7 @@ public class CompleteProfile extends javax.swing.JFrame {
     
     private void executeSQLQuery2(String query) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+           Statement st= db.getDbStatement();
           
            if(st.executeUpdate(query)==1){
                

@@ -27,9 +27,12 @@ public class ProfileBloodrequest extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
-    
+    DatabaseConnection db;
+    Statement st;
     
     public ProfileBloodrequest() {
+        db=new DatabaseConnection();
+        st=db.getDbStatement();
         initComponents();
         reload();
         this.setLocationRelativeTo(null);
@@ -49,11 +52,7 @@ public class ProfileBloodrequest extends javax.swing.JFrame {
     public void usericon(){
         String s="";
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="1234";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+
                     ResultSet rs=st.executeQuery("select *from userselection");
            
                     
@@ -486,11 +485,6 @@ public class ProfileBloodrequest extends javax.swing.JFrame {
     
     private void executeSQLQuery(String query) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="1234";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
           
            if(st.executeUpdate(query)==1){
                //JOptionPane.showMessageDialog(null,"Registration Successful!!","Congrats..",JOptionPane.INFORMATION_MESSAGE);
@@ -549,11 +543,7 @@ public class ProfileBloodrequest extends javax.swing.JFrame {
         
         //code suru
         try{
-                    String url="jdbc:mysql://localhost/diu_blood_management_db";
-                    String user="root";
-                     String passs="1234";
-                    Connection con=DriverManager.getConnection(url,user,passs);
-                    Statement st=con.createStatement();
+
                     ResultSet rs=st.executeQuery("select *from settings");
            
                     
@@ -615,11 +605,7 @@ public class ProfileBloodrequest extends javax.swing.JFrame {
             //try catch for donor id previous
             int did=0;
                 try{
-                        String url="jdbc:mysql://localhost/diu_blood_management_db";
-                        String user="root";
-                        String pass="1234";
-                        Connection con=DriverManager.getConnection(url,user,pass);
-                        Statement st=con.createStatement();
+
                         ResultSet rs=st.executeQuery("select *from requests");
                         String s="";
                         while(rs.next()){
@@ -651,11 +637,7 @@ public class ProfileBloodrequest extends javax.swing.JFrame {
             String person="";
             
             try{
-                        String url="jdbc:mysql://localhost/diu_blood_management_db";
-                        String user="root";
-                        String pass="1234";
-                        Connection con=DriverManager.getConnection(url,user,pass);
-                        Statement st=con.createStatement();
+
                         ResultSet rs=st.executeQuery("select *from userselection");
                         String s="";
                         while(rs.next()){
@@ -696,11 +678,7 @@ public class ProfileBloodrequest extends javax.swing.JFrame {
     
     private void executeSQLQuery(String query,String message) {
        try{
-           String url="jdbc:mysql://localhost/diu_blood_management_db";
-           String user="root";
-           String pass="1234";
-           Connection con=DriverManager.getConnection(url,user,pass);
-           Statement st=con.createStatement();
+
           
            if(st.executeUpdate(query)==1){
                JOptionPane.showMessageDialog(null,"Your Request Created Successfully!! ","Congrats",JOptionPane.INFORMATION_MESSAGE);
