@@ -1,6 +1,6 @@
 # Blood-Donation-Management-System
 
-To run this project, We have to follow s3(Three) steps:
+To run this project, We have to follow 3(Three) steps:
 
 -> 1st Step:
       We have to add MySql Driver in our project.
@@ -24,9 +24,10 @@ To run this project, We have to follow s3(Three) steps:
     ** You will find the Database file in the 'Database' folder. **
     
 -> 3rd Step:
+      
       To set-up your database username & password:
           Goto:
-            src -> Database -> ConnectionDatabase.java
+          src -> Database -> ConnectionDatabase.java
         
         
                        ******** Enjoy ********
